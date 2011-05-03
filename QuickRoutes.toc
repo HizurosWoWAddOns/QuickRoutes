@@ -1,0 +1,23 @@
+## Interface: 40100
+## Title: QuickRoutes
+## Notes: Routes support for Data Broker
+## Author: CodeRedLin
+## Dependencies: Routes
+## OptionalDeps: Ace3, LibQTip-1.0, LibStub, CallbackHandler-1.0, LibDBIcon-1.0
+## SavedVariables: QuickRoutesDB
+
+#@no-lib-strip@
+lib\LibStub\LibStub.lua
+lib\CallbackHandler-1.0\CallbackHandler-1.0.xml
+lib\AceGUI-3.0\AceGUI-3.0.xml
+lib\AceConfig-3.0\AceConfig-3.0.xml
+lib\LibQTip-1.0\lib.xml
+#@end-no-lib-strip@
+
+lib\LibDataBroker-1.1\LibDataBroker-1.1.lua
+
+#@no-lib-strip@
+lib\LibDBIcon-1.0\LibDBIcon-1.0.lua
+#@end-no-lib-strip@
+
+QuickRoutes.lua
