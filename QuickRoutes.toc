@@ -1,5 +1,6 @@
-## Interface: 40100
+## Interface: 50001
 ## Title: QuickRoutes
+## Version:5.0-Release1
 ## Notes: Routes support for Data Broker
 ## Author: CodeRedLin
 ## Dependencies: Routes
