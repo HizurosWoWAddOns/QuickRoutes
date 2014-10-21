@@ -1,3 +1,6 @@
+
+local addon, ns = ...;
+local L = ns.L;
 local QuickRoutes = CreateFrame("frame")
 
 local LibQTip = LibStub('LibQTip-1.0')
@@ -30,7 +33,7 @@ local options = {
 		confdesc = {
 			order = 1,
 			type = "description",
-			name = "Quickly set and unset routes.\n",
+			name = L["Quickly set and unset routes."],
 			cmdHidden = true
 		},
 		displayheader = {
@@ -40,8 +43,8 @@ local options = {
 		},
 		hide_minimapicon = {
 			type = "toggle", width = "double",
-			name = "Hide Minimap Icon",
-			desc = "Show or hide the minimap icon.",
+			name = L["Hide Minimap Icon"],
+			desc = L["Show or hide the minimap icon."],
 			order = 3,
 			get = function() return QuickRoutesDB.MinimapIcon.hide end,
 			set = function(_, v)
