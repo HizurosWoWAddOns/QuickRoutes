@@ -1,4 +1,4 @@
-## Interface: 60100
+## Interface: 60200
 ## Title: QuickRoutes
 ## Version: @project-version@
 ## Notes: Routes support for Data Broker
