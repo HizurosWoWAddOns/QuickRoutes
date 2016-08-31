@@ -101,7 +101,7 @@ local function Entry_OnEnter(self, data, button)
 
 	local cat, obj = C("ltblue",CATEGORIES..":"), C("ltblue",L["Objects"]..":");
 	for k,v in pairs(Routes.db.global.routes[zone][data.name].db_type)do
-		tooltip2:AddLine(cat,C("ltgreen",k));
+		tooltip2:AddLine(cat,C("ltgreen",L[k]));
 		cat = " ";
 	end
 
