@@ -41,8 +41,8 @@ if LOCALE_deDE then
 	L["Hide Minimap Icon"] = "Verstecke Minimap Symbol";
 	L["Left-click"] = "Linksklick";
 	L["Objects"] = "Objekte";
-	L["Open options"] = "Öffnet Optionen";
-	L["Open routes"] = "Öffnet Routes";
+	L["Open options"] = "Optionen öffnen";
+	L["Open routes"] = "Routes öffnen";
 	--L["Quickly set and unset routes."] = "";
 	L["Right-click"] = "Rechtsklick";
 	L["Route"] = "Route";
@@ -130,6 +130,10 @@ end
 
 if LOCALE_zhCN then
 	-- For simplified chinese translations...
+	L["Left-click"] = "左单击";
+	L["Right-click"] = "右键";
+	--
+	--
 	L["Fishing"] = "钓鱼"
 	L["GathererHERB"] = "草药"
 	L["GathererMINE"] = "采矿"
