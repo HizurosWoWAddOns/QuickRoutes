@@ -48,8 +48,8 @@ local options = {
 			order = 3,
 			get = function() return QuickRoutesDB.MinimapIcon.hide end,
 			set = function(_, v)
-				QuickRoutesDB.MinimapIcon.hide = v
-				if v then LDBIcon:Hide("QuickRoutes") else LDBIcon:Show("QuickRoutes") end
+				QuickRoutesDB.MinimapIcon.hide = v;
+				LDBIcon:Refresh("QuickRoutes");
 			end,
 		},
 		show_hints = {

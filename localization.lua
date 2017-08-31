@@ -3,24 +3,33 @@ local addon, ns = ...;
 local L=setmetatable({},{__index=function(t,k) local v="?"; if(k) then v=tostring(k); rawset(t,k,v); end return v; end});
 ns.L=L;
 
---[[
 
-L["Display hints in tooltip"] = "";
-L["Display second tooltip with additional informations to a single route"] = "";
-L["Hide Minimap Icon"] = "";
-L["Left-click"] = "";
-L["Objects"] = "";
-L["Open options"] = "";
-L["Open routes"] = "";
-L["Quickly set and unset routes."] = "";
-L["Right-click"] = "";
-L["Route"] = "";
-L["Show hints"] = "";
-L["Show or hide the minimap icon."] = "";
-L["Show second tooltip"] = "";
+-- Hi. This addon needs your help for localization. :)
+-- https://wow.curseforge.com/projects/quickroutes/localization
 
-]]
+if LOCALE_deDE then
+	--@localization(locale="deDE", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_esES then
+	--@localization(locale="esES", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_esMX then
+	--@localization(locale="esMX", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_frFR then
+	--@localization(locale="frFR", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_itIT then
+	--@localization(locale="itIT", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_koKR then
+	--@localization(locale="koKR", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_ptBR then
+	--@localization(locale="ptBR", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_ruRU then
+	--@localization(locale="ruRU", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_zhCN then
+	--@localization(locale="zhCN", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+elseif LOCALE_zhTW then
+	--@localization(locale="zhTW", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+end
 
+--[[ the following lines are a workaround for some problems with gathermate ]]
 if LOCALE_enUS or LOCALE_enGB then
 	L["GathererMINE"] = "Mining"
 	L["GathererHERB"] = "Herbalism"
@@ -35,22 +44,6 @@ if LOCALE_enUS or LOCALE_enGB then
 end
 
 if LOCALE_deDE then
-	-- For german translations...
-	L["Display hints in tooltip"] = "Zeigt Tipps im Tooltip";
-	L["Display second tooltip with additional informations to a single route"] = "Zeigt zweiten Tooltip mit zusätzlichen Informationen zu einer einzelnen Route";
-	L["Hide Minimap Icon"] = "Verstecke Minimap Symbol";
-	L["Left-click"] = "Linksklick";
-	L["Objects"] = "Objekte";
-	L["Open options"] = "Optionen öffnen";
-	L["Open routes"] = "Routes öffnen";
-	--L["Quickly set and unset routes."] = "";
-	L["Right-click"] = "Rechtsklick";
-	L["Route"] = "Route";
-	L["Show hints"] = "Zeige Tipps";
-	L["Show or hide the minimap icon."] = "Zeige oder verstecke das Minimap Symbol.";
-	L["Show second tooltip"] = "Zeige zweiten Tooltip";
-	--
-	--
 	L["Fishing"] = "Angeln"
 	L["GathererHERB"] = "Kräuterkunde"
 	L["GathererMINE"] = "Bergbau"
@@ -67,7 +60,6 @@ if LOCALE_deDE then
 end
 
 if LOCALE_esES or LOCALE_esMX then
-	-- For spanish translations...
 	L["Fishing"] = "Pesca"
 	L["GathererHERB"] = "Herbología"
 	L["GathererMINE"] = "Minería"
@@ -84,7 +76,6 @@ if LOCALE_esES or LOCALE_esMX then
 end
 
 if LOCALE_frFR then
-	-- For french translations...
 	L["Fishing"] = "Pêche"
 	L["GathererHERB"] = "Herboristerie"
 	L["GathererMINE"] = "Minage"
@@ -101,18 +92,14 @@ if LOCALE_frFR then
 end
 
 if LOCALE_itIT then
-	-- For italian translations...
 end
 if LOCALE_koKR then
-	-- For korean translations...
 end
 
 if LOCALE_ptBR then
-	-- For Brazilian/Portuguese translations...
 end
 
 if LOCALE_ruRU then
-	-- For russian translations...
 	L["Fishing"] = "Рыбалка"
 	L["GathererHERB"] = "Травничество"
 	L["GathererMINE"] = "Горное дело"
@@ -129,11 +116,6 @@ if LOCALE_ruRU then
 end
 
 if LOCALE_zhCN then
-	-- For simplified chinese translations...
-	L["Left-click"] = "左单击";
-	L["Right-click"] = "右键";
-	--
-	--
 	L["Fishing"] = "钓鱼"
 	L["GathererHERB"] = "草药"
 	L["GathererMINE"] = "采矿"
@@ -150,7 +132,6 @@ if LOCALE_zhCN then
 end
 
 if LOCALE_zhTW then
-	-- For traditional chinese translations...
 	L["Fishing"] = "釣魚"
 	L["GathererHERB"] = "採藥"
 	L["GathererMINE"] = "採礦"
