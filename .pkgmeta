@@ -1,28 +1,44 @@
 package-as: QuickRoutes
+
 externals:
 	libs/LibStub:
-		url: svn://svn.wowace.com/wow/libstub/mainline/trunk
+		url: https://repos.wowace.com/wow/libstub/trunk
 		tag: latest
+
 	libs/CallbackHandler-1.0:
-		url: svn://svn.wowace.com/wow/callbackhandler/mainline/trunk/CallbackHandler-1.0
+		url: https://repos.wowace.com/wow/callbackhandler/trunk/CallbackHandler-1.0
 		tag: latest
-	libs/LibQTip-1.0:
-		url: svn://svn.wowace.com/wow/libqtip-1-0/mainline/trunk
-		tag: latest
-	libs/LibDataBroker-1.1:
-		url: git://github.com/tekkub/libdatabroker-1-1.git
-		tag: latest
-	libs/AceConfig-3.0:
-		url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceConfig-3.0
-		tag: latest
+
 	libs/AceGUI-3.0:
-		url: svn://svn.wowace.com/wow/ace3/mainline/trunk/AceGUI-3.0
+		url: https://repos.wowace.com/wow/ace3/trunk/AceGUI-3.0
 		tag: latest
+
+	libs/AceConfig-3.0:
+		url: https://repos.wowace.com/wow/ace3/trunk/AceConfig-3.0
+		tag: latest
+
+	libs/LibDataBroker-1.1:
+		url: https://repos.wowace.com/wow/libdatabroker-1-1
+		tag: latest
+
 	libs/LibDBIcon-1.0:
-		url: svn://svn.wowace.com/wow/libdbicon-1-0/mainline/trunk/LibDBIcon-1.0
+		url: https://repos.wowace.com/wow/libdbicon-1-0/trunk/LibDBIcon-1.0
+		tag: latest
+
+	libs/LibQTip-1.0:
+		url: https://repos.wowace.com/wow/libqtip-1-0/trunk
 		tag: latest
 
 enable-nolib-creation: yes
 
 ignore:
-	- .pkgmeta
+	- libs/LibStub/tests
+	- libs/LibStub/LibStub.toc
+	- libs/CallbackHandler-1.0/CallbackHandler-1.0.xml
+	- libs/LibDataBroker-1.0/README.textile
+	- libs/LibDBIcon-1.0/lib.xml
+	- libs/LibQTip-1.0/.pkgmeta
+	- libs/LibQTip-1.0/lib.xml
+	- libs/LibQTip-1.0/LibQTip-1.0.toc
+
+license-output: LICENSE.txt
