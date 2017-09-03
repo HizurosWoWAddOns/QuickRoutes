@@ -3,11 +3,83 @@ local addon, ns = ...;
 local L=setmetatable({},{__index=function(t,k) local v="?"; if(k) then v=tostring(k); rawset(t,k,v); end return v; end});
 ns.L=L;
 
-
 -- Hi. This addon needs your help for localization. :)
 -- https://wow.curseforge.com/projects/quickroutes/localization
 
+L["Colon"] = ":";
+L["Archaeology"] = PROFESSIONS_ARCHAEOLOGY;
+L["Fishing"] = PROFESSIONS_FISHING;
+L["Extract Gas"] = GetSpellInfo(30075) or "Extract Gas";
+L["Herbalism"] = GetSpellInfo(170691) or "Herbalism";
+L["Logging"] = GetSpellInfo(167895) or "Logging";
+L["Mining"] = GetSpellInfo(2575) or "Mining";
+L["Treasure"] = GetSpellInfo(188830) or "Treasure";
+L["GathererMINE"] = L["Mining"];
+L["GathererHERB"] = L["Herbalism"];
+L["GathererOPEN"] = L["Treasure"];
+L["GatherMate2Herb Gathering"] = L["Herbalism"];
+L["GatherMate2Mining"] = L["Mining"];
+L["GatherMate2Fishing"] = L["Fishing"];
+L["GatherMate2Extract Gas"] = L["Extract Gas"];
+L["GatherMate2Treasure"] = L["Treasure"];
+L["GatherMate2Archaeology"] = L["Archaeology"];
+L["GatherMate2Logging"] = L["Logging"];
+
+--@do-not-package@
+L["AddOnLoaded"] = "AddOn loaded..."
+L["Authors"] = "AddOn authors:"
+L["Description"] = "Gives you quick access to show/hide created routes in current zone"
+L["Hints"] = "Show hints"
+L["HintsDesc"] = "Display hints in tooltip"
+L["Info"] = "Info"
+L["LeftClick"] = "Left-click"
+L["Minimap"] = "Minimap"
+L["NoRouteData"] = "Oops... There are no data in this route"
+L["NoRoutesInZone"] = "No routes found for current zone"
+L["Objects"] = ""
+L["OnLogin"] = "On login"
+L["OpenOptions"] = "Open options"
+L["OpenRoutes"] = "Open routes"
+L["RightClick"] = "Right-click"
+L["Route"] = ""
+L["SecondTT"] = "Show second tooltip"
+L["SecondTTDesc"] = "Display second tooltip with additional informations to a single route"
+L["ShowAddOnLoaded"] = "Show 'AddOn loaded'"
+L["ShowAddOnLoadedDesc"] = "Show 'AddOn loaded...' message on login"
+L["ShowMinimap"] = "Show minimap icon"
+L["ShowMinimapDesc"] = "Show or hide the minimap icon"
+L["Tooltip"] = "Tooltip"
+L["Version"] = "AddOn version:"
+--@end-do-not-package@
+
+--@localization(locale="enUS", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
+
 if LOCALE_deDE then
+	--@do-not-package@
+	L["AddOnLoaded"] = "AddOn geladen..."
+	L["Authors"] = "AddOn Autoren:"
+	L["Hints"] = "Zeige Tipps"
+	L["HintsDesc"] = "Zeigt Tipps im Tooltip"
+	L["Info"] = "Info"
+	L["LeftClick"] = "Linksklick"
+	L["Minimap"] = "Minikarte"
+	L["NoRouteData"] = "Oops... Da sind keine Daten in der Route"
+	L["NoRoutesInZone"] = "Keine Routen gefunden für aktuelle Zone"
+	L["Objects"] = "Objekte"
+	L["OnLogin"] = "Beim Login"
+	L["OpenOptions"] = "Optionen öffnen"
+	L["OpenRoutes"] = "Routes öffnen"
+	L["RightClick"] = "Rechtsklick"
+	L["Route"] = "Route"
+	L["SecondTT"] = "Zeige zweiten Tooltip"
+	L["SecondTTDesc"] = "Zeigt zweiten Tooltip mit zusätzlichen Informationen zu einer einzelnen Route"
+	L["ShowAddOnLoaded"] = "Zeige 'AddOn geladen'"
+	L["ShowAddOnLoadedDesc"] = "Zeige 'AddOn geladen...' Nachricht beim Login"
+	L["ShowMinimap"] = "Zeige Minimap Symbol"
+	L["ShowMinimapDesc"] = "Zeige oder verstecke das Minimap Symbol."
+	L["Tooltip"] = "Tooltip"
+	L["Version"] = "AddOn Version:"
+	--@end-do-not-package@
 	--@localization(locale="deDE", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 elseif LOCALE_esES then
 	--@localization(locale="esES", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
@@ -24,126 +96,11 @@ elseif LOCALE_ptBR then
 elseif LOCALE_ruRU then
 	--@localization(locale="ruRU", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 elseif LOCALE_zhCN then
+	L["Colon"] = "：";
 	--@localization(locale="zhCN", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 elseif LOCALE_zhTW then
+	L["Colon"] = "：";
 	--@localization(locale="zhTW", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 end
 
---[[ the following lines are a workaround for some problems with gathermate ]]
-if LOCALE_enUS or LOCALE_enGB then
-	L["GathererMINE"] = "Mining"
-	L["GathererHERB"] = "Herbalism"
-	L["GathererOPEN"] = "Treasure"
-	L["GatherMate2Herb Gathering"] = "Herbalism"
-	L["GatherMate2Mining"] = "Mining"
-	L["GatherMate2Fishing"] = "Fishing"
-	L["GatherMate2Extract Gas"] = "Extract Gas"
-	L["GatherMate2Treasure"] = "Treasure"
-	L["GatherMate2Archaeology"] = "Archaeology"
-	L["GatherMate2Logging"] = "Logging"
-end
-
-if LOCALE_deDE then
-	L["Fishing"] = "Angeln"
-	L["GathererHERB"] = "Kräuterkunde"
-	L["GathererMINE"] = "Bergbau"
-	L["GathererOPEN"] = "Schätze"
-	L["GatherMate2Archaeology"] = "Archäologie"
-	L["GatherMate2Extract Gas"] = "Gas"
-	L["GatherMate2Fishing"] = "Angeln"
-	L["GatherMate2Herb Gathering"] = "Kräuterkunde"
-	L["GatherMate2Logging"] = "Holzfällen"
-	L["GatherMate2Mining"] = "Bergbau"
-	L["GatherMate2Treasure"] = "Schätze"
-	L["Herbalism"] = "Kräuterkunde"
-	L["Mining"] = "Bergbau"
-end
-
-if LOCALE_esES or LOCALE_esMX then
-	L["Fishing"] = "Pesca"
-	L["GathererHERB"] = "Herbología"
-	L["GathererMINE"] = "Minería"
-	L["GathererOPEN"] = "Tesoro"
-	L["GatherMate2Archaeology"] = "Arqueología"
-	L["GatherMate2Extract Gas"] = "Extraer Gas"
-	L["GatherMate2Fishing"] = "Pesca"
-	L["GatherMate2Herb Gathering"] = "Herbología"
-	--L["GatherMate2Logging"] = ""
-	L["GatherMate2Mining"] = "Minería"
-	L["GatherMate2Treasure"] = "Tesoro"
-	L["Herbalism"] = "Herbología"
-	L["Mining"] = "Minería"
-end
-
-if LOCALE_frFR then
-	L["Fishing"] = "Pêche"
-	L["GathererHERB"] = "Herboristerie"
-	L["GathererMINE"] = "Minage"
-	L["GathererOPEN"] = "Trésor"
-	L["GatherMate2Archaeology"] = "Archéologie"
-	L["GatherMate2Extract Gas"] = "Gaz"
-	L["GatherMate2Fishing"] = "Pêche"
-	L["GatherMate2Herb Gathering"] = "Herboristerie"
-	--L["GatherMate2Logging"] = ""
-	L["GatherMate2Mining"] = "Minage"
-	L["GatherMate2Treasure"] = "Trésor"
-	L["Herbalism"] = "Herboristerie"
-	L["Mining"] = "Minage"
-end
-
-if LOCALE_itIT then
-end
-if LOCALE_koKR then
-end
-
-if LOCALE_ptBR then
-end
-
-if LOCALE_ruRU then
-	L["Fishing"] = "Рыбалка"
-	L["GathererHERB"] = "Травничество"
-	L["GathererMINE"] = "Горное дело"
-	L["GathererOPEN"] = "Сокровища"
-	L["GatherMate2Archaeology"] = "Археология"
-	L["GatherMate2Extract Gas"] = "Извлечение газа"
-	L["GatherMate2Fishing"] = "Рыболовство"
-	L["GatherMate2Herb Gathering"] = "Травничество"
-	-- L["GatherMate2Logging"] = ""
-	L["GatherMate2Mining"] = "Горное дело"
-	L["GatherMate2Treasure"] = "Сокровища"
-	L["Herbalism"] = "Травничество"
-	L["Mining"] = "Горное дело"
-end
-
-if LOCALE_zhCN then
-	L["Fishing"] = "钓鱼"
-	L["GathererHERB"] = "草药"
-	L["GathererMINE"] = "采矿"
-	L["GathererOPEN"] = "宝藏"
-	L["GatherMate2Archaeology"] = "考古"
-	L["GatherMate2Extract Gas"] = "气体云"
-	L["GatherMate2Fishing"] = "钓鱼"
-	L["GatherMate2Herb Gathering"] = "草药"
-	L["GatherMate2Logging"] = "日志记录"
-	L["GatherMate2Mining"] = "采矿"
-	L["GatherMate2Treasure"] = "宝藏"
-	L["Herbalism"] = "草药"
-	L["Mining"] = "采矿"
-end
-
-if LOCALE_zhTW then
-	L["Fishing"] = "釣魚"
-	L["GathererHERB"] = "採藥"
-	L["GathererMINE"] = "採礦"
-	L["GathererOPEN"] = "寶藏"
-	L["GatherMate2Archaeology"] = "考古"
-	L["GatherMate2Extract Gas"] = "氣雲"
-	L["GatherMate2Fishing"] = "釣魚"
-	L["GatherMate2Herb Gathering"] = "採藥"
-	-- L["GatherMate2Logging"] = ""
-	L["GatherMate2Mining"] = "採礦"
-	L["GatherMate2Treasure"] = "寶藏"
-	L["Herbalism"] = "採藥"
-	L["Mining"] = "採礦"
-end
 
