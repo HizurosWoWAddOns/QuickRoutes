@@ -2,7 +2,7 @@
 ## Title: QuickRoutes
 ## Version: @project-version@
 ## Notes: Routes support for Data Broker
-## Author: CodeRedLin
+## Author: Hizuro, CodeRedLin
 ## Dependencies: Routes
 ## SavedVariables: QuickRoutesDB
 ## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibDataBroker-1.1, LibDBIcon-1.0, LibQTip-1.0
