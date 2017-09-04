@@ -163,7 +163,7 @@ local function CreateTooltip2(self, data)
 	tt2:Show();
 end
 
-local function HideTooltip2(self,tooltip)
+local function HideTooltip2()
 	tt2:Hide();
 	LibQTip:Release(tt2);
 end
@@ -185,9 +185,9 @@ function CreateTooltip(parent, data)
 		tt:Clear();
 	else
 		-- aquire new tooltip instance from LibQTip
-		tt = LibQTip:Acquire(addon, 2, "RIGHT", "LEFT");
+		tt = LibQTip:Acquire(addon, 1, "CENTER");
 		tt:SmartAnchorTo(parent);
-		tt:SetAutoHideDelay(0.25, parent);
+		tt:SetAutoHideDelay(0.1, parent);
 	end
 
 	-- Tiptac Support for LibQTip Tooltips
@@ -197,7 +197,7 @@ function CreateTooltip(parent, data)
 	end
 
 	-- header
-	tt:SetCell(tt:AddLine(), 1, C("dkyellow",addon), tt:GetHeaderFont() , "CENTER", 0);
+	tt:AddHeader(C("dkyellow",addon));
 	tt:AddSeparator();
 	tt:AddSeparator(1,0,0,0,0);
 
@@ -216,18 +216,19 @@ function CreateTooltip(parent, data)
 			end
 		end
 
-		table.sort(routeNames);
 	end
 
 	-- list routes
 	if routeNames and #routeNames>0 then
-		for i = 1, #routeNames do
-			local line = tt:AddLine((not zoneRoutes[routeNames[i]].hidden) and "|TInterface\\Buttons\\UI-CheckBox-Check:0|t" or " ",  C("ltblue",routeNames[i]));
-			tt:SetLineScript(line, "OnMouseUp", ToggleRoute, {parent=parent, name=routeNames[i]});
+		table.sort(routeNames);
+		for _,routeName in pairs(routeNames) do
+			local texture = (not zoneRoutes[routeName].hidden) and "UI-CheckBox-Check" or "UI-PASSIVEHIGHLIGHT";
+			local line = tt:AddLine("|TInterface\\Buttons\\"..texture..":16:16:0:-2|t " .. C("ltblue",routeName));
+			tt:SetLineScript(line, "OnMouseUp", ToggleRoute, {parent=parent, name=routeName});
 
 			-- sub tooltip for more infomations about single route
 			if QuickRoutesDB.tooltip2 then
-				tt:SetLineScript(line, "OnEnter", CreateTooltip2, {parent=tt, name=routeNames[i]});
+				tt:SetLineScript(line, "OnEnter", CreateTooltip2, {parent=tt, name=routeName});
 				tt:SetLineScript(line, "OnLeave", HideTooltip2);
 			end
 		end
@@ -239,8 +240,8 @@ function CreateTooltip(parent, data)
 	-- add hints
 	if QuickRoutesDB.hints then
 		tt:AddSeparator(4,0,0,0,0);
-		tt:SetCell(tt:AddLine(),1,C("copper",L.LeftClick).." || "..C("green",L.OpenRoutes),nil,"CENTER",0);
-		tt:SetCell(tt:AddLine(),1,C("copper",L.RightClick).." || "..C("green",L.OpenOptions),nil,"CENTER",0);
+		tt:AddLine(C("copper",L.LeftClick).." || "..C("green",L.OpenRoutes));
+		tt:AddLine(C("copper",L.RightClick).." || "..C("green",L.OpenOptions));
 	end
 
 	-- show tooltip
