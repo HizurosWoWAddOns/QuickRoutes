@@ -250,9 +250,9 @@ function CreateTooltip(parent, data)
 end
 
 QuickRoutes:SetScript("OnEvent", function(self, event, ...)
-	if event=="ADDON_LOAEDED" and ...==addon then
+	if event=="ADDON_LOADED" and ...==addon then
 		-- check savedvariables
-		if not QuickRoutesDB then
+		if QuickRoutesDB==nil then
 			QuickRoutesDB = {};
 		end
 		for k,v in pairs(dbDefaults)do
