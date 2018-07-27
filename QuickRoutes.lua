@@ -117,10 +117,10 @@ local function CreateTooltip2(self, data)
 		tt2:SmartAnchorTo(data.parent);
 	end
 
-	-- Tiptac Support for LibQTip Tooltips
 	if _G.TipTac and _G.TipTac.AddModifiedTip then
-		-- Pass true as second parameter because hooking OnHide causes C stack overflows
-		_G.TipTac:AddModifiedTip(tt2, true);
+		_G.TipTac:AddModifiedTip(tt2, true); -- Tiptac Support for LibQTip Tooltips
+	elseif AddOnSkins and AddOnSkins.SkinTooltip then
+		AddOnSkins:SkinTooltip(tt2); -- AddOnSkins support
 	end
 
 	-- tooltip header
@@ -191,10 +191,10 @@ function CreateTooltip(parent, data)
 		tt:SetAutoHideDelay(0.1, parent);
 	end
 
-	-- Tiptac Support for LibQTip Tooltips
 	if _G.TipTac and _G.TipTac.AddModifiedTip then
-		-- Pass true as second parameter because hooking OnHide causes C stack overflows
-		_G.TipTac:AddModifiedTip(tt, true);
+		_G.TipTac:AddModifiedTip(tt, true); -- Tiptac Support for LibQTip Tooltips
+	elseif AddOnSkins and AddOnSkins.SkinTooltip then
+		AddOnSkins:SkinTooltip(tt); -- AddOnSkins support
 	end
 
 	-- header
