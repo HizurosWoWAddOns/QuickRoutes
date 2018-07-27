@@ -8,7 +8,7 @@ local LibQTip = LibStub("LibQTip-1.0");
 local AC = LibStub("AceConfig-3.0");
 local ACD = LibStub("AceConfigDialog-3.0");
 
-local QuickRoutes,LDBObject,tt,tt2,englishZoneName = CreateFrame("frame");
+local QuickRoutes,LDBObject,tt,tt2 = CreateFrame("frame");
 
 local dbDefaults = {
 	MinimapIcon = {
@@ -128,10 +128,11 @@ local function CreateTooltip2(self, data)
 
 	-- create list of categories and node objects
 	local cat,obj = {},{};
-	for k,v in pairs(Routes.db.global.routes[englishZoneName][data.name].db_type)do
+	local zoneID = C_Map.GetBestMapForUnit("player");
+	for k,v in pairs(Routes.db.global.routes[zoneID][data.name].db_type)do
 		tinsert(cat, C("ltgreen",L[k]));
 	end
-	for k,v in pairs(Routes.db.global.routes[englishZoneName][data.name].selection)do
+	for k,v in pairs(Routes.db.global.routes[zoneID][data.name].selection)do
 		tinsert(obj,C("ltgreen",v));
 	end
 
@@ -202,20 +203,11 @@ function CreateTooltip(parent, data)
 	tt:AddSeparator(1,0,0,0,0);
 
 	-- get routes
-	local localizedZoneName,zoneRoutes,zoneNames = GetRealZoneText();
-	if Routes.LZName[localizedZoneName] then
-		-- Get english mapfile (for non english clients)
-		englishZoneName = Routes.LZName[localizedZoneName][1];
-		zoneRoutes = Routes.db.global.routes[englishZoneName];
-
-		-- create name list for sorting
-		routeNames = {};
-		for name, data in pairs(zoneRoutes) do
-			if data.route and #data.route>0 then
-				tinsert(routeNames, name);
-			end
+	local routeNames,zoneRoutes = {},Routes.db.global.routes[C_Map.GetBestMapForUnit("player")] or {};
+	for name, data in pairs(zoneRoutes) do
+		if data.route and #data.route>0 then
+			tinsert(routeNames, name);
 		end
-
 	end
 
 	-- list routes
