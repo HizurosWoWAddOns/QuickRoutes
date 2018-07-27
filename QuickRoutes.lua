@@ -25,6 +25,24 @@ local function C(color,str)
 	return "|cff"..( ({ltblue="69ccf0",ltgreen="80ff80",ltyellow="fff569",dkyellow="ffcc00",copper="f0a55f",gray="808080",green="00ff00",blue="0099ff"})[color] or "ffffff" )..str.."|r";
 end
 
+local function tWrappedConcat(tbl,delimiter,maxLetter)
+	local tmp,tmp2,count = {},{},0;
+	for k, v in pairs(tbl)do
+		local c = strlen(v);
+		if count+c>maxLetter then
+			tinsert(tmp,table.concat(tmp2,delimiter));
+			wipe(tmp2);
+			count=0;
+		end
+		tinsert(tmp2,v);
+		count=count+c;
+	end
+	if count>0 then
+		tinsert(tmp,table.concat(tmp2,delimiter));
+	end
+	return table.concat(tmp,delimiter.."|n");
+end
+
 -- option panel by ace3
 local function opt(info,value)
 	local key = info[#info];
@@ -138,20 +156,21 @@ local function CreateTooltip2(self, data)
 
 	-- show list of categories
 	if #cat>0 then
-		table.sort(cat);
 		tt2:AddSeparator(4,0,0,0,0);
 		tt2:AddLine(C("ltblue",CATEGORIES));
 		tt2:AddSeparator();
-		tt2:AddLine(table.concat(cat,", "));
+		table.sort(cat);
+		tt2:AddLine(tWrappedConcat(cat,", ",60));
 	end
 
 	-- show list of node objects
 	if #obj>0 then
-		table.sort(obj);
 		tt2:AddSeparator(4,0,0,0,0);
 		tt2:AddLine(C("ltblue",L.Objects));
 		tt2:AddSeparator();
-		tt2:AddLine(table.concat(obj,", "));
+
+		table.sort(obj);
+		tt2:AddLine(tWrappedConcat(obj,", ",60));
 	end
 
 	-- message on empty lists
