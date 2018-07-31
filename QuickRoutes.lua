@@ -191,7 +191,7 @@ end
 local CreateTooltip;
 local function ToggleRoute(frame, data)
 	-- toggle hidden state
-	Routes.db.global.routes[englishZoneName][data.name].hidden = not Routes.db.global.routes[englishZoneName][data.name].hidden;
+	Routes.db.global.routes[data.zone][data.name].hidden = not Routes.db.global.routes[data.zone][data.name].hidden;
 	-- force update of routes
 	Routes:DrawWorldmapLines();
 	Routes:DrawMinimapLines(true);
@@ -222,7 +222,8 @@ function CreateTooltip(parent, data)
 	tt:AddSeparator(1,0,0,0,0);
 
 	-- get routes
-	local routeNames,zoneRoutes = {},Routes.db.global.routes[C_Map.GetBestMapForUnit("player")] or {};
+	local zone = C_Map.GetBestMapForUnit("player");
+	local routeNames,zoneRoutes = {},Routes.db.global.routes[zone] or {};
 	for name, data in pairs(zoneRoutes) do
 		if data.route and #data.route>0 then
 			tinsert(routeNames, name);
@@ -235,11 +236,11 @@ function CreateTooltip(parent, data)
 		for _,routeName in pairs(routeNames) do
 			local texture = (not zoneRoutes[routeName].hidden) and "UI-CheckBox-Check" or "UI-PASSIVEHIGHLIGHT";
 			local line = tt:AddLine("|TInterface\\Buttons\\"..texture..":16:16:0:-2|t " .. C("ltblue",routeName));
-			tt:SetLineScript(line, "OnMouseUp", ToggleRoute, {parent=parent, name=routeName});
+			tt:SetLineScript(line, "OnMouseUp", ToggleRoute, {parent=parent, zone=zone, name=routeName});
 
 			-- sub tooltip for more infomations about single route
 			if QuickRoutesDB.tooltip2 then
-				tt:SetLineScript(line, "OnEnter", CreateTooltip2, {parent=tt, name=routeName});
+				tt:SetLineScript(line, "OnEnter", CreateTooltip2, {parent=tt, zone=zone, name=routeName});
 				tt:SetLineScript(line, "OnLeave", HideTooltip2);
 			end
 		end
