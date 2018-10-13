@@ -8,7 +8,7 @@ local LibQTip = LibStub("LibQTip-1.0");
 local AC = LibStub("AceConfig-3.0");
 local ACD = LibStub("AceConfigDialog-3.0");
 
-local QuickRoutes,LDBObject,tt,tt2 = CreateFrame("frame");
+local QuickRoutes,LDBObject,tt,tt2,RoutesModuleTT = CreateFrame("frame");
 
 local dbDefaults = {
 	MinimapIcon = {
@@ -18,11 +18,13 @@ local dbDefaults = {
 	},
 	hints = true,
 	tooltip2 = true,
-	showLoaded = true
+	showLoaded = true,
+	waypointstomtom = true
 };
 
+local colors = {ltblue="69ccf0",ltgreen="80ff80",ltyellow="fff569",dkyellow="ffcc00",copper="f0a55f",gray="808080",green="00ff00",blue="0099ff"};
 local function C(color,str)
-	return "|cff"..( ({ltblue="69ccf0",ltgreen="80ff80",ltyellow="fff569",dkyellow="ffcc00",copper="f0a55f",gray="808080",green="00ff00",blue="0099ff"})[color] or "ffffff" )..str.."|r";
+	return "|cff"..( colors[color] or "ffffff" )..str.."|r";
 end
 
 local function tWrappedConcat(tbl,delimiter,maxLetter)
@@ -41,6 +43,15 @@ local function tWrappedConcat(tbl,delimiter,maxLetter)
 		tinsert(tmp,table.concat(tmp2,delimiter));
 	end
 	return table.concat(tmp,delimiter.."|n");
+end
+
+local function RoutesTomTom(self,action,button)
+	if not RoutesModuleTT then
+		RoutesModuleTT = Routes:GetModule("TomTom");
+	end
+	if RoutesModuleTT and RoutesModuleTT[action] then
+		RoutesModuleTT[action](RoutesModuleTT);
+	end
 end
 
 -- option panel by ace3
@@ -113,6 +124,10 @@ local options = {
 				tooltip2 = {
 					type = "toggle", order = 2, width = "full",
 					name = L.SecondTT, desc = L.SecondTTDesc
+				},
+				waypointstomtom = {
+					type = "toggle", order = 3, width = "full",
+					name = L.WaypointsTomTom, desc = L.WaypointsTomTomDesc
 				}
 			}
 		}
@@ -205,7 +220,7 @@ function CreateTooltip(parent, data)
 		tt:Clear();
 	else
 		-- aquire new tooltip instance from LibQTip
-		tt = LibQTip:Acquire(addon, 1, "CENTER");
+		tt = LibQTip:Acquire(addon, 3, "CENTER", "CENTER", "CENTER");
 		tt:SmartAnchorTo(parent);
 		tt:SetAutoHideDelay(0.1, parent);
 	end
@@ -217,43 +232,66 @@ function CreateTooltip(parent, data)
 	end
 
 	-- header
-	tt:AddHeader(C("dkyellow",addon));
-	tt:AddSeparator();
-	tt:AddSeparator(1,0,0,0,0);
+	tt:SetCell(tt:AddLine(),1,C("dkyellow",addon),tt:GetHeaderFont(),"CENTER",0);
+	tt:AddSeparator(4,0,0,0,0);
 
 	-- get routes
-	local zone = C_Map.GetBestMapForUnit("player");
+	local selection,zone = false,C_Map.GetBestMapForUnit("player");
 	local routeNames,zoneRoutes = {},Routes.db.global.routes[zone] or {};
 	for name, data in pairs(zoneRoutes) do
 		if data.route and #data.route>0 then
 			tinsert(routeNames, name);
+			if not zoneRoutes[name].hidden then
+				selection=true;
+			end
 		end
 	end
 
 	-- list routes
-	if routeNames and #routeNames>0 then
-		table.sort(routeNames);
-		for _,routeName in pairs(routeNames) do
-			local texture = (not zoneRoutes[routeName].hidden) and "UI-CheckBox-Check" or "UI-PASSIVEHIGHLIGHT";
-			local line = tt:AddLine("|TInterface\\Buttons\\"..texture..":16:16:0:-2|t " .. C("ltblue",routeName));
-			tt:SetLineScript(line, "OnMouseUp", ToggleRoute, {parent=parent, zone=zone, name=routeName});
+	local info=C_Map.GetMapInfo(zone);
+	if info then
+		tt:SetCell(tt:AddLine(),1,C("ltgreen",info.name),nil,"CENTER",0);
+		tt:AddSeparator();
+		if routeNames and #routeNames>0 then
+			table.sort(routeNames);
+			for _,routeName in pairs(routeNames) do
+				local texture = (not zoneRoutes[routeName].hidden) and "UI-CheckBox-Check" or "UI-PASSIVEHIGHLIGHT";
+				local line = tt:AddLine();
+				tt:SetCell(line,1,"|TInterface\\Buttons\\"..texture..":16:16:0:-2|t " .. C("ltblue",routeName),nil,"CENTER",0);
+				tt:SetLineScript(line, "OnMouseUp", ToggleRoute, {parent=parent, zone=zone, name=routeName});
 
-			-- sub tooltip for more infomations about single route
-			if QuickRoutesDB.tooltip2 then
-				tt:SetLineScript(line, "OnEnter", CreateTooltip2, {parent=tt, zone=zone, name=routeName});
-				tt:SetLineScript(line, "OnLeave", HideTooltip2);
+				-- sub tooltip for more infomations about single route
+				if QuickRoutesDB.tooltip2 then
+					tt:SetLineScript(line, "OnEnter", CreateTooltip2, {parent=tt, zone=zone, name=routeName});
+					tt:SetLineScript(line, "OnLeave", HideTooltip2);
+				end
 			end
+		else
+			-- No routes found for current zone
+			tt:SetCell(tt:AddLine(),1,C("gray",L.NoRoutesInZone),nil,"CENTER",0);
 		end
 	else
-		-- No routes found for current zone
-		tt:AddLine(C("gray",L.NoRoutesInZone));
+		tt:SetCell(tt:AddLine(),1,C("gray",L["Unknown zone"]),nil,"CENTER",0);
+	end
+
+	-- routes/tomtom options
+	if QuickRoutesDB.waypointstomtom and selection and TomTom then
+		tt:AddSeparator(4,0,0,0,0);
+		tt:SetCell(tt:AddLine(),1,C("ltgreen",L["WaypointsTomTom"]),nil,"CENTER",0);
+		tt:AddSeparator();
+		local tomtom={"QueueFirstNode","RemoveQueuedNode","ChangeWaypointDirection"};
+		local l=tt:AddLine();
+		for i=1, #tomtom do
+			tt:SetCell(l,i,C("ltblue",L[tomtom[i]]));
+			tt:SetCellScript(l,i,"OnMouseUp",RoutesTomTom,tomtom[i]);
+		end
 	end
 
 	-- add hints
 	if QuickRoutesDB.hints then
 		tt:AddSeparator(4,0,0,0,0);
-		tt:AddLine(C("copper",L.LeftClick).." || "..C("green",L.OpenRoutes));
-		tt:AddLine(C("copper",L.RightClick).." || "..C("green",L.OpenOptions));
+		tt:SetCell(tt:AddLine(),1,C("copper",L.LeftClick).." || "..C("green",L.OpenRoutes),nil,"CENTER",0);
+		tt:SetCell(tt:AddLine(),1,C("copper",L.RightClick).." || "..C("green",L.OpenOptions),nil,"CENTER",0);
 	end
 
 	-- show tooltip

@@ -50,6 +50,11 @@ L["ShowMinimap"] = "Show minimap icon"
 L["ShowMinimapDesc"] = "Show or hide the minimap icon"
 L["Tooltip"] = "Tooltip"
 L["Version"] = "AddOn version:"
+L["QueueFirstNode"] = "Start"
+L["RemoveQueuedNode"] = "Stop"
+L["ChangeWaypointDirection"] = "Change|ndirection"
+L["WaypointsTomTom"] = "Waypoints (TomTom)"
+L["WaypointsTomTomDesc"] = "Display quick access to routes \"Waypoints (TomTom)\" options in tooltip."
 --@end-do-not-package@
 
 --@localization(locale="enUS", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
