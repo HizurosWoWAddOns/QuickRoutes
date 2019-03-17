@@ -63,6 +63,8 @@ if LOCALE_deDE then
 	--@do-not-package@
 	L["AddOnLoaded"] = "AddOn geladen..."
 	L["Authors"] = "AddOn Autoren:"
+	L["ChangeWaypointDirection"] = "Richtung|nwechseln"
+	L["Description"] = "Gibt dir Schnellzugriff zum anzeigen/verstecken von erstellten Routen der aktuellen Zone"
 	L["Hints"] = "Zeige Tipps"
 	L["HintsDesc"] = "Zeigt Tipps im Tooltip"
 	L["Info"] = "Info"
@@ -74,6 +76,8 @@ if LOCALE_deDE then
 	L["OnLogin"] = "Beim Login"
 	L["OpenOptions"] = "Optionen öffnen"
 	L["OpenRoutes"] = "Routes öffnen"
+	L["QueueFirstNode"] = "Start"
+	L["RemoveQueuedNode"] = "Stopp"
 	L["RightClick"] = "Rechtsklick"
 	L["Route"] = "Route"
 	L["SecondTT"] = "Zeige zweiten Tooltip"
@@ -84,6 +88,8 @@ if LOCALE_deDE then
 	L["ShowMinimapDesc"] = "Zeige oder verstecke das Minimap Symbol."
 	L["Tooltip"] = "Tooltip"
 	L["Version"] = "AddOn Version:"
+	L["WaypointsTomTom"] = "Wegpunkte (TomTom)"
+	L["WaypointsTomTomDesc"] = "Zeigt Schnellzugriff auf Routes \"Wegpunkte (TomTom)\" Optionen im Tooltip."
 	--@end-do-not-package@
 	--@localization(locale="deDE", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 elseif LOCALE_esES then
