@@ -279,7 +279,9 @@ function CreateTooltip(parent, data)
 		tt:AddSeparator(4,0,0,0,0);
 		tt:SetCell(tt:AddLine(),1,C("ltgreen",L["WaypointsTomTom"]),nil,"CENTER",0);
 		tt:AddSeparator();
-		local tomtom={"QueueFirstNode","RemoveQueuedNode","ChangeWaypointDirection"};
+		local tomtom={"QueueFirstNode","RemoveQueuedNode","SetClosestWaypoint"};
+
+		--TomTom:SetClosestWaypoint(true)
 		local l=tt:AddLine();
 		for i=1, #tomtom do
 			tt:SetCell(l,i,C("ltblue",L[tomtom[i]]));
@@ -313,7 +315,7 @@ QuickRoutes:SetScript("OnEvent", function(self, event, ...)
 
 		-- inform player that the addon is loaded :)
 		if QuickRoutesDB.showLoaded then
-			print(C("blue",addon)..":",C("green",L.AddOnLoaded));
+			print(C("blue",addon)..HEADER_COLON,C("green",L.AddOnLoaded));
 		end
 	elseif event=="PLAYER_LOGIN" then
 		-- register data broker
@@ -342,8 +344,8 @@ QuickRoutes:SetScript("OnEvent", function(self, event, ...)
 		end
 
 		-- update option table
-		options.args.g0.args.version.name = C("dkyellow",L.Version).." "..GetAddOnMetadata(addon,"version");
-		options.args.g0.args.authors.name = C("dkyellow",L.Authors).." "..GetAddOnMetadata(addon,"author");
+		options.args.g0.args.version.name = C("dkyellow",GAME_VERSION_LABEL).." @project-version@";
+		options.args.g0.args.authors.name = C("dkyellow",L.Authors).." @project-author@";
 	end
 end);
 

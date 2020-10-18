@@ -6,7 +6,6 @@ ns.L=L;
 -- Hi. This addon needs your help for localization. :)
 -- https://wow.curseforge.com/projects/quickroutes/localization
 
-L["Colon"] = ":";
 L["Archaeology"] = PROFESSIONS_ARCHAEOLOGY;
 L["Fishing"] = PROFESSIONS_FISHING;
 L["Extract Gas"] = GetSpellInfo(30075) or "Extract Gas";
@@ -52,7 +51,7 @@ L["Tooltip"] = "Tooltip"
 L["Version"] = "AddOn version:"
 L["QueueFirstNode"] = "Start"
 L["RemoveQueuedNode"] = "Stop"
-L["ChangeWaypointDirection"] = "Change|ndirection"
+L["SetClosestWaypoint"] = "Change|ndirection"
 L["WaypointsTomTom"] = "Waypoints (TomTom)"
 L["WaypointsTomTomDesc"] = "Display quick access to routes \"Waypoints (TomTom)\" options in tooltip."
 --@end-do-not-package@
@@ -63,7 +62,7 @@ if LOCALE_deDE then
 	--@do-not-package@
 	L["AddOnLoaded"] = "AddOn geladen..."
 	L["Authors"] = "AddOn Autoren:"
-	L["ChangeWaypointDirection"] = "Richtung|nwechseln"
+	L["SetClosestWaypoint"] = "Richtung|nwechseln"
 	L["Description"] = "Gibt dir Schnellzugriff zum anzeigen/verstecken von erstellten Routen der aktuellen Zone"
 	L["Hints"] = "Zeige Tipps"
 	L["HintsDesc"] = "Zeigt Tipps im Tooltip"
@@ -107,10 +106,8 @@ elseif LOCALE_ptBR then
 elseif LOCALE_ruRU then
 	--@localization(locale="ruRU", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 elseif LOCALE_zhCN then
-	L["Colon"] = "：";
 	--@localization(locale="zhCN", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 elseif LOCALE_zhTW then
-	L["Colon"] = "：";
 	--@localization(locale="zhTW", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 end
 
