@@ -275,7 +275,7 @@ function CreateTooltip(parent, data)
 	end
 
 	-- routes/tomtom options
-	if QuickRoutesDB.waypointstomtom and selection and TomTom then
+	if QuickRoutesDB.waypointstomtom and TomTom then
 		tt:AddSeparator(4,0,0,0,0);
 		tt:SetCell(tt:AddLine(),1,C("ltgreen",L["WaypointsTomTom"]),nil,"CENTER",0);
 		tt:AddSeparator();
