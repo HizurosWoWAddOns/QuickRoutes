@@ -99,7 +99,7 @@ local options = {
 			args = {
 				showLoaded = {
 					type = "toggle", width = "full",
-					name = L.ShowAddOnLoaded, desc = L.ShowAddOnLoadedDesc
+					name = L.ShowAddOnLoaded, desc = L.ShowAddOnLoadedDesc .. "|n|n|cff44ff44"..L.ShowAddOnLoadedDescAlt.."|r"
 				}
 			}
 		},
@@ -145,6 +145,7 @@ local options = {
 AC:RegisterOptionsTable(addon, options);
 ACD:AddToBlizOptions(addon);
 ACD:SetDefaultSize(addon,360,480);
+ns.AddCredits(options.args.credits.args);
 
 -- second tooltip - list of nodes of the displayed route
 local function CreateTooltip2(self, data)
@@ -321,7 +322,7 @@ QuickRoutes:SetScript("OnEvent", function(self, event, ...)
 		end
 
 		-- inform player that the addon is loaded :)
-		if QuickRoutesDB.showLoaded then
+		if QuickRoutesDB.showLoaded or IsShiftKeyDown() then
 			print(C("blue",addon)..HEADER_COLON,C("green",L.AddOnLoaded));
 		end
 	elseif event=="PLAYER_LOGIN" then
