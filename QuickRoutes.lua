@@ -130,6 +130,13 @@ local options = {
 					name = L.WaypointsTomTom, desc = L.WaypointsTomTomDesc
 				}
 			}
+		},
+		credits = {
+			type = "group", order = 200, inline = true,
+			name = L["Credits"],
+			args = {
+				-- add credit for former author
+			}
 		}
 	}
 }

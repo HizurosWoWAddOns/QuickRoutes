@@ -1,6 +1,6 @@
-## Interface: 90200
-## Interface-BCC: 20503
-## Interface-Classic: 11402
+## Interface: 90205
+## Interface-BCC: 20504
+## Interface-Classic: 11403
 ## Title: QuickRoutes
 ## Version: @project-version@
 ## Notes: Routes support for Data Broker
@@ -22,4 +22,8 @@ libs\LibQTip-1.0\LibQTip-1.0.lua
 #@end-no-lib-strip@
 
 localization.lua
+#@do-not-package@
+localizations.workfile.lua
+#@end-do-not-package@
+libs/HizurosSharedTools/HizurosSharedTools.lua
 QuickRoutes.lua
