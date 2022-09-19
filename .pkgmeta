@@ -32,7 +32,7 @@ externals:
         commit: 4c6a3d882373fa0b52c6b71d09acc0b87ec1ae00
 
     libs/HizurosSharedTools:
-        url: https://github.com/HizurosWoWAddOns/.github
+        url: https://github.com/HizurosWoWAddOns/HizurosSharedTools.git
 
 enable-nolib-creation: no
 enable-toc-creation: yes
@@ -46,6 +46,5 @@ ignore:
     - libs/LibQTip-1.0/.pkgmeta
     - libs/LibQTip-1.0/lib.xml
     - libs/LibQTip-1.0/LibQTip-1.0.toc
-    - libs/HizurosSharedTools/profile
     - libs/HizurosSharedTools/README.md
 
