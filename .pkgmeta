@@ -27,12 +27,15 @@ externals:
 
     libs/LibQTip-1.0:
         url: https://repos.curseforge.com/wow/libqtip-1-0
-        #tag: latest
-        ## current latest tag are too old. latest commit aren't tagged.
-        commit: 4c6a3d882373fa0b52c6b71d09acc0b87ec1ae00
+        tag: latest
 
     libs/HizurosSharedTools:
         url: https://github.com/HizurosWoWAddOns/HizurosSharedTools.git
+
+    libs/LibColors-1.0:
+        url: https://github.com/HizurosWoWAddOns/LibColors-1.0.git
+        tag: latest
+
 
 enable-nolib-creation: no
 enable-toc-creation: yes
@@ -47,4 +50,13 @@ ignore:
     - libs/LibQTip-1.0/lib.xml
     - libs/LibQTip-1.0/LibQTip-1.0.toc
     - libs/HizurosSharedTools/README.md
+    - libs/LibColors-1.0/.pkgmeta
+    - libs/LibColors-1.0/colors_fed_standard_595.lua
+    - libs/LibColors-1.0/colors_web.lua
+    - libs/LibColors-1.0/colors_x11.lua
+    - libs/LibColors-1.0/LibColors-1.0-all.xml
+    - libs/LibColors-1.0/LibColors-1.0-fed595.xml
+    - libs/LibColors-1.0/LibColors-1.0-web.xml
+    - libs/LibColors-1.0/LibColors-1.0-x11.xml
+    - libs/LibColors-1.0/LibColors-1.0.toc
 

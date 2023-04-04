@@ -7,7 +7,7 @@
 ## Author: Hizuro, CodeRedLin
 ## Dependencies: Routes
 ## SavedVariables: QuickRoutesDB
-## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibDataBroker-1.1, LibDBIcon-1.0, LibQTip-1.0
+## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibDataBroker-1.1, LibDBIcon-1.0, LibQTip-1.0, LibColors-1.0
 
 ## X-Curse-Project-ID: 29768
 
@@ -19,6 +19,7 @@ libs\LibDataBroker-1.1\LibDataBroker-1.1.lua
 libs\LibDBIcon-1.0\LibDBIcon-1.0.lua
 libs\LibQTip-1.0\LibQTip-1.0.lua
 libs\HizurosSharedTools\HizurosSharedTools.lua
+libs\LibColors-1.0\LibColors-1.0.lua
 
 localization.lua
 #@do-not-package@
