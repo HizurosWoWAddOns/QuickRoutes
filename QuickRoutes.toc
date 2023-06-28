@@ -1,9 +1,10 @@
 ## Interface: 100100
-## Interface-Wrath: 30401
+## Interface-Wrath: 30402
 ## Interface-Classic: 11403
 ## Title: QuickRoutes
 ## Version: @project-version@
 ## Notes: Routes support for Data Broker
+## IconTexture: Interface\Addons\QuickRoutes\icon.tga
 ## Author: Hizuro, CodeRedLin
 ## Dependencies: Routes
 ## SavedVariables: QuickRoutesDB
