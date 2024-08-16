@@ -8,11 +8,11 @@ ns.L=L;
 
 L["Archaeology"] = PROFESSIONS_ARCHAEOLOGY;
 L["Fishing"] = PROFESSIONS_FISHING;
-L["Extract Gas"] = GetSpellInfo(30075) or "Extract Gas";
-L["Herbalism"] = GetSpellInfo(170691) or "Herbalism";
-L["Logging"] = GetSpellInfo(167895) or "Logging";
-L["Mining"] = GetSpellInfo(2575) or "Mining";
-L["Treasure"] = GetSpellInfo(188830) or "Treasure";
+L["Extract Gas"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(30075) or "Extract Gas";
+L["Herbalism"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(170691) or "Herbalism";
+L["Logging"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(167895) or "Logging";
+L["Mining"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(2575) or "Mining";
+L["Treasure"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(188830) or "Treasure";
 L["GathererMINE"] = L["Mining"];
 L["GathererHERB"] = L["Herbalism"];
 L["GathererOPEN"] = L["Treasure"];
