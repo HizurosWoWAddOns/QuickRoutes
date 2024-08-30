@@ -8,11 +8,6 @@ ns.L=L;
 
 L["Archaeology"] = PROFESSIONS_ARCHAEOLOGY;
 L["Fishing"] = PROFESSIONS_FISHING;
-L["Extract Gas"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(30075) or "Extract Gas";
-L["Herbalism"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(170691) or "Herbalism";
-L["Logging"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(167895) or "Logging";
-L["Mining"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(2575) or "Mining";
-L["Treasure"] = (C_Spell and C_Spell.GetSpellInfo or GetSpellInfo)(188830) or "Treasure";
 L["GathererMINE"] = L["Mining"];
 L["GathererHERB"] = L["Herbalism"];
 L["GathererOPEN"] = L["Treasure"];
@@ -23,6 +18,28 @@ L["GatherMate2Extract Gas"] = L["Extract Gas"];
 L["GatherMate2Treasure"] = L["Treasure"];
 L["GatherMate2Archaeology"] = L["Archaeology"];
 L["GatherMate2Logging"] = L["Logging"];
+
+local retail = WOW_PROJECT_ID==WOW_PROJECT_MAINLINE;
+local spells = {
+	["Herbalism"] = retail and 170691 or 13614,
+	["Mining"]=2575,
+	["Treasure"]=188830,
+	["Extract Gas"]=30075, -- bc,wotlk
+	["Logging"]=167895, -- wod
+}
+local GetSpellName  = GetSpellInfo or function(id)
+	local info = C_Spell.GetSpellInfo(id)
+	if info and info.name then
+		return info.name;
+	end
+end
+for name_en,id in pairs(spells) do
+	local name = GetSpellName(id)
+	if name then
+		L[name_en] = name
+	end
+end
+
 
 --@localization(locale="enUS", format="lua_additive_table", handle-subnamespaces="none", handle-unlocalized="ignore")@
 
