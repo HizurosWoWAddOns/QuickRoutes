@@ -10,6 +10,20 @@
 ## SavedVariables: QuickRoutesDB
 ## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibDataBroker-1.1, LibDBIcon-1.0, LibQTip-1.0, LibColors-1.0
 
+# https://warcraft.wiki.gg/wiki/Addon_Categories
+## Category: Data Broker (need translation)
+## Category-enUS: Data Broker
+## Category-deDE: Datenbroker
+## Category-esES: Intermediario de Datos
+## Category-esMX: Intermediario de Datos
+## Category-frFR: Courtier de Données
+## Category--itIT:
+## Category--koKR:
+## Category-ptBR: Corretor de Dados
+## Category-ruRU: Посредник данных
+## Category-zhCN: 数据管理
+## Category-zhTW: 資料管理
+
 ## X-Curse-Project-ID: 29768
 
 libs\LibStub\LibStub.lua
