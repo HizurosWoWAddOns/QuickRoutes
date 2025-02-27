@@ -1,6 +1,6 @@
-## Interface: 110005
+## Interface: 110100
 ## Interface-Cata: 40401
-## Interface-Classic: 11504
+## Interface-Classic: 11506
 ## Title: QuickRoutes
 ## Version: @project-version@
 ## Notes: Routes support for Data Broker
