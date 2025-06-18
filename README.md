@@ -1,5 +1,5 @@
 # QuickRoutes (WoW AddOn)
-![Build](https://github.com/HizurosWoWAddOns/QuickRoutes/actions/workflows/bigwigsmods-packager.yml/badge.svg)
+![Build](https://img.shields.io/github/actions/workflow/status/HizurosWoWAddOns/QuickRoutes/packager.yml?style=flat-square)
 ![Tag](https://img.shields.io/github/v/tag/HizurosWoWAddOns/QuickRoutes?style=flat-square)
 ![Downloads](https://img.shields.io/github/downloads/HizurosWoWAddOns/QuickRoutes/total?style=flat-square)
 ![Downloads](https://img.shields.io/github/downloads/HizurosWoWAddOns/QuickRoutes/latest/total?style=flat-square)
