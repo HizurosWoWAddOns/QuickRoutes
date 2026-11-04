@@ -29,6 +29,10 @@ local function C(color,str)
 	return "|cff"..( colors[color] or "ffffff" )..str.."|r";
 end
 
+local supporter = {
+	-- {<color>,<name>}, <localizations>, <donations>, <otherSupportTypes>, <special text>,
+}
+
 local function tWrappedConcat(tbl,delimiter,maxLetter)
 	local tmp,tmp2,count = {},{},0;
 	for k, v in pairs(tbl)do
@@ -133,13 +137,6 @@ local options = {
 				}
 			}
 		},
-		credits = {
-			type = "group", order = 200, inline = true,
-			name = L["Credits"],
-			args = {
-				-- add credit for former author
-			}
-		}
 	}
 }
 
@@ -147,7 +144,7 @@ local options = {
 AC:RegisterOptionsTable(addon, options);
 ACD:AddToBlizOptions(addon);
 ACD:SetDefaultSize(addon,360,480);
-LibStub("HizurosSharedTools").AddCredit(addon,options.args.credits.args);
+LibStub("HizurosSharedTools").AddCredit(addon,options.args,{inline=true,supporter=supporter});
 
 -- second tooltip - list of nodes of the displayed route
 local function CreateTooltip2(self, data)
